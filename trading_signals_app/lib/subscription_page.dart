@@ -15,27 +15,40 @@ class SubscriptionPage extends StatelessWidget {
         ),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Serial Key',
-                border: OutlineInputBorder(),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Serial Key',
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.vpn_key),
+                ),
               ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                // Redeem action
-              },
-              child: Text('Redeem'),
-            ),
-            Container(
-              padding: EdgeInsets.all(16),
-              color: Colors.grey[300],
-              child: Text('lorem ipsum lorem ipsum\nlorem ipsum lorem ipsum'),
-            ),
-          ],
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  // Redeem action
+                },
+                child: Text('Redeem'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green,
+                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                ),
+              ),
+              SizedBox(height: 20),
+              Container(
+                padding: EdgeInsets.all(16),
+                color: Colors.grey[300],
+                child: Text(
+                  'lorem ipsum lorem ipsum\nlorem ipsum lorem ipsum',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

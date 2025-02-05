@@ -18,17 +18,35 @@ class HistoryPage extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              child: ListView(
+              child: ListView.builder(
+                itemCount: 10, // Example item count
+                itemBuilder: (context, index) {
+                  return Card(
+                    margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                    child: ListTile(
+                      leading: Icon(Icons.trending_up, color: Colors.green),
+                      title: Text('GBP/USD Long (TP) 1 : 3.44 RRR'),
+                      subtitle: Text('Trade #${index + 1}'),
+                      trailing: Icon(Icons.arrow_forward_ios),
+                      onTap: () {
+                        // Handle tap
+                      },
+                    ),
+                  );
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
                 children: [
-                  ListTile(title: Text('1. GBP/USD Long (TP) 1 : 3.44 RRR')),
-                  // Add more list items here
+                  Text('Total trades: 8'),
+                  Text('SL: 2 TP: 6', style: TextStyle(color: Colors.red)),
+                  Text('Average winrate: 75%'),
+                  Text('Average RRR: 3.125'),
                 ],
               ),
             ),
-            Text('Total trades: 8'),
-            Text('SL: 2 TP: 6', style: TextStyle(color: Colors.red)),
-            Text('Average winrate: 75%'),
-            Text('Average RRR: 3.125'),
           ],
         ),
       ),

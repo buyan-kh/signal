@@ -33,39 +33,80 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Signal'),
+        title: Text('Trading Signals'),
         actions: [
-          TextButton(
+          IconButton(
+            icon: Icon(Icons.history),
             onPressed: () {
               Navigator.pushNamed(context, '/history');
             },
-            child: Text('History', style: TextStyle(color: Colors.green)),
           ),
-          TextButton(
+          IconButton(
+            icon: Icon(Icons.subscriptions),
             onPressed: () {
               Navigator.pushNamed(context, '/subscription');
             },
-            child: Text('Subscription', style: TextStyle(color: Colors.green)),
           ),
         ],
       ),
       body: signal == null
           ? Center(child: CircularProgressIndicator())
-          : Center(
+          : Padding(
+              padding: const EdgeInsets.all(16.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Last Update Date: ${signal!['date']}'),
-                  Text('${signal!['pair']}', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-                  Text('${signal!['type']} at ${signal!['currentPrice']}'),
-                  Text('TP: ${signal!['tpPrice']}', style: TextStyle(color: Colors.green)),
-                  Text('SL: ${signal!['slPrice']}', style: TextStyle(color: Colors.red)),
-                  Text('1 : ${signal!['rrr']} RRR'),
-                  TextButton(
-                    onPressed: () {
-                      // Open setup link
-                    },
-                    child: Text('setup link', style: TextStyle(color: Colors.blue)),
+                  Text(
+                    'Latest Signal',
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 20),
+                  Card(
+                    elevation: 4,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '${signal!['pair']}',
+                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(height: 10),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('Type: ${signal!['type']}'),
+                              Text('RRR: ${signal!['rrr']}'),
+                            ],
+                          ),
+                          SizedBox(height: 10),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('Current: ${signal!['currentPrice']}'),
+                              Text('TP: ${signal!['tpPrice']}', style: TextStyle(color: Colors.green)),
+                              Text('SL: ${signal!['slPrice']}', style: TextStyle(color: Colors.red)),
+                            ],
+                          ),
+                          SizedBox(height: 10),
+                          Text('Date: ${signal!['date']}'),
+                          SizedBox(height: 20),
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: TextButton(
+                              onPressed: () {
+                                // Open setup link
+                              },
+                              child: Text('View Setup', style: TextStyle(color: Colors.blue)),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),

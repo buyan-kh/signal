@@ -13,6 +13,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Trading Signals App',
+      theme: ThemeData(
+        primarySwatch: Colors.green,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
       initialRoute: '/',
       routes: {
         '/': (context) => HomePage(),
