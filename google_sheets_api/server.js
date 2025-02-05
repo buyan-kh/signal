@@ -7,7 +7,7 @@ const sheets = google.sheets('v4');
 const apiKey = 'YOUR_API_KEY'; // Replace with your API key
 const spreadsheetId = 'YOUR_SPREADSHEET_ID'; // Replace with your spreadsheet ID
 
-app.get('/api/signals', async (req, res) => {
+app.get('/api/trades', async (req, res) => {
   try {
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId,

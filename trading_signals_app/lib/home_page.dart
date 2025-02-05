@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Trading Signals'),
+        title: Text('Signal'),
         actions: [
           IconButton(
             icon: Icon(Icons.history),
