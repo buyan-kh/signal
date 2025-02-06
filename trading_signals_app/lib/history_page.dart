@@ -9,7 +9,7 @@ class HistoryPage extends StatefulWidget {
 }
 
 class _HistoryPageState extends State<HistoryPage> {
-  List<List<dynamic>> trades = [];
+  List<dynamic> trades = [];
 
   @override
   void initState() {
@@ -22,7 +22,7 @@ class _HistoryPageState extends State<HistoryPage> {
 
     if (response.statusCode == 200) {
       setState(() {
-        trades = List<List<dynamic>>.from(json.decode(response.body));
+        trades = json.decode(response.body);
       });
     } else {
       throw Exception('Failed to load trades');
@@ -47,7 +47,10 @@ class _HistoryPageState extends State<HistoryPage> {
               itemCount: trades.length,
               itemBuilder: (context, index) {
                 final trade = trades[index];
-                final isLongTrade = trade[1] == 'Long'; // Assuming trade[1] contains 'Long' or 'Short'
+                if (trade['result'] == null || trade['result'].isEmpty) {
+                  return Container(); // Skip active trades
+                }
+                final isLongTrade = trade['type'] == 'Long';
                 return Card(
                   margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                   child: ListTile(
@@ -55,8 +58,8 @@ class _HistoryPageState extends State<HistoryPage> {
                       isLongTrade ? Icons.trending_up : Icons.trending_down,
                       color: isLongTrade ? Colors.green : Colors.red,
                     ),
-                    title: Text('${trade[0]} ${trade[1]} (TP) ${trade[2]} : ${trade[3]} RRR'),
-                    subtitle: Text('Trade #${index + 1}'),
+                    title: Text('${trade['pair']} ${trade['type']} (TP) ${trade['tp']} : ${trade['rrr']} RRR'),
+                    subtitle: Text('Trade #${trade['id']}'),
                     trailing: Icon(Icons.arrow_forward_ios),
                     onTap: () {
                       // Handle tap
