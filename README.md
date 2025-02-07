@@ -1,5 +1,5 @@
 # Signal
-### Full stack app for receiving live trading signals. I'm currently developing finance machine learning models, that's where the signals will come from. My vision for this app is to make it a copy trading platform where people can rent a trained AI model to trade for them.
+### I'm currently developing finance machine learning models, this app is made to show the user real time informations.
 
 
 <p align="center">
